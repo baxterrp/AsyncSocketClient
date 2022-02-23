@@ -6,7 +6,7 @@ client.Connect();
 string input;
 do
 {
-    input = Console.ReadLine();
+    input = Console.ReadLine() ?? string.Empty;
     if(input != "<EXIT>")
     {
         await client.Send(input);

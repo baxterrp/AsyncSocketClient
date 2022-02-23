@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using System.Net.Sockets;
-using System.Text;
 
 namespace AsyncSocketClient
 {
@@ -18,6 +17,7 @@ namespace AsyncSocketClient
             if (string.IsNullOrWhiteSpace(input))
             {
                 Console.WriteLine("You no send blank space - SHAME");
+                return;
             }
 
             var writer = new StreamWriter(_client.GetStream());
