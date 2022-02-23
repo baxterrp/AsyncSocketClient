@@ -26,17 +26,13 @@ namespace AsyncSocketClient
             await writer.WriteAsync(input);
         }
 
-        public async Task Connect()
+        public async Task Connect(ServerConfiguration serverConfiguration)
         {
             try
             {
-                var ipAddress = "192.168.86.80";
-                var port = 5000;
-                var parsedAddress = IPAddress.Parse(ipAddress);
+                await _client.ConnectAsync(serverConfiguration.GetIPAddress, serverConfiguration.Port);
 
-                await _client.ConnectAsync(parsedAddress, port);
-
-                Console.WriteLine($"Connected to {ipAddress}:{port}");
+                Console.WriteLine($"Connected to {serverConfiguration.IpAddress}:{serverConfiguration.Port}");
 
                 HandleReadData(_client);
             }
