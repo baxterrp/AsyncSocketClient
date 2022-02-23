@@ -30,7 +30,7 @@ namespace AsyncSocketClient
         {
             try
             {
-                var ipAddress = "127.0.0.1";
+                var ipAddress = "192.168.86.80";
                 var port = 5000;
                 var parsedAddress = IPAddress.Parse(ipAddress);
 
