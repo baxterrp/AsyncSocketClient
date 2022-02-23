@@ -62,7 +62,7 @@ namespace AsyncSocketClient
 
                     var message = new string(buffer);
 
-                    Console.WriteLine(message);
+                    Console.WriteLine($"\t\t\t{message}");
 
                     Array.Clear(buffer, 0, buffer.Length);
                 }
