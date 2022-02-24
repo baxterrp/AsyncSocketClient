@@ -14,32 +14,42 @@ var username = Console.ReadLine();
 
 username = !string.IsNullOrWhiteSpace(username) ? username : $"user-{Guid.NewGuid()}";
 
-var client = new Client();
-client.Connect(serverConfiguration);
-
-var user = new User
+try
 {
-    Id = Guid.NewGuid().ToString(),
-    UserName = username
-};
+    var client = new Client();
+    client.Connect(serverConfiguration);
 
-string input;
-do
-{
-    input = Console.ReadLine() ?? string.Empty;
-
-    if(input != "<EXIT>")
+    var user = new User
     {
-        var package = new MessengerPackage
+        Id = Guid.NewGuid().ToString(),
+        UserName = username
+    };
+
+    Console.Clear();
+    Console.WriteLine($"Welcome, {username}. Enter a message and hit enter to share.");
+
+    string input;
+    do
+    {
+        input = Console.ReadLine() ?? string.Empty;
+
+        if (input != "<EXIT>")
         {
-            Message = input,
-            User = user,
-            SentDate = DateTime.Now
-        };
+            var package = new MessengerPackage
+            {
+                Message = input,
+                User = user,
+                SentDate = DateTime.Now
+            };
 
-        var serializedPackage = JsonSerializer.Serialize(package);
+            var serializedPackage = JsonSerializer.Serialize(package);
 
-        await client.Send(serializedPackage);
-    }
+            await client.Send(serializedPackage);
+        }
 
-} while (input != "<EXIT>");
+    } while (input != "<EXIT>");
+}
+catch
+{
+    Console.WriteLine($"Oops! you done fucked up {username}");
+}
