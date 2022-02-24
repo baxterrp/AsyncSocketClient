@@ -35,6 +35,12 @@ try
 
         if (input != "<EXIT>")
         {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                Console.WriteLine("You no send blank space - SHAME");
+                continue;
+            }
+
             var package = new MessengerPackage
             {
                 Message = input,

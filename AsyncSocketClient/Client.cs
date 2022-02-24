@@ -14,12 +14,6 @@ namespace AsyncSocketClient
 
         public async Task Send(string input)
         {
-            if (string.IsNullOrWhiteSpace(input))
-            {
-                Console.WriteLine("You no send blank space - SHAME");
-                return;
-            }
-
             var writer = new StreamWriter(_client.GetStream());
             writer.AutoFlush = true;
 
