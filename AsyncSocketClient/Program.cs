@@ -17,7 +17,7 @@ username = !string.IsNullOrWhiteSpace(username) ? username : $"user-{Guid.NewGui
 try
 {
     var client = new Client();
-    client.Connect(serverConfiguration);
+    await client.Connect(serverConfiguration);
 
     var user = new User
     {
@@ -55,7 +55,7 @@ try
 
     } while (input != "<EXIT>");
 }
-catch
+catch(Exception ex)
 {
     Console.WriteLine($"Oops! you done fucked up {username}");
 }

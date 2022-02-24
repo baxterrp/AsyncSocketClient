@@ -22,18 +22,11 @@ namespace AsyncSocketClient
 
         public async Task Connect(ServerConfiguration serverConfiguration)
         {
-            try
-            {
-                await _client.ConnectAsync(serverConfiguration.GetIPAddress, serverConfiguration.Port);
+            await _client.ConnectAsync(serverConfiguration.GetIPAddress, serverConfiguration.Port);
 
-                Console.WriteLine($"Connected to {serverConfiguration.IpAddress}:{serverConfiguration.Port}");
+            Console.WriteLine($"Connected to {serverConfiguration.IpAddress}:{serverConfiguration.Port}");
 
-                HandleReadData(_client);
-            }
-            catch(Exception exception)
-            {
-                Console.WriteLine(exception.Message);
-            }
+            HandleReadData(_client);
         }
 
         private async Task HandleReadData(TcpClient client)
@@ -61,7 +54,7 @@ namespace AsyncSocketClient
                     Array.Clear(buffer, 0, buffer.Length);
                 }
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 Console.WriteLine(exception.Message);
             }
